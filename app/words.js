@@ -1,26 +1,39 @@
 'use strict';
 
-var words = function(sentence) {
-	// return null for other data types
-	if (typeof sentence !== 'string') 
+var words = function words(sentence) {
+
+	// sentence is not a valid string
+	if (typeof sentence !== 'string') {
+
+		// return null for other data types
 		return null;
 
-	else{ // Valid sentence - String
+	} else { // Sentence is a String
 
 		// store final result in an object
-		var results={};
+		var results = {};
 
-		// Split the sentence by using a Regular Expression
-		// \ + caters for multi space
-		// \n caters for newline
-		// \t caters for tabs
+		/*
+		 * 	Split the sentence by using Regular Expression
+		 *
+		 *  \space - splits sentence by space
+		 *  \n     - splits sentence by new line
+		 *  \t     - splits sentence by tab
+		 *
+		 *  returns an array
+		 * 
+		 */
   		sentence.split(/\ +|\n|\t/).forEach(function(value){
-  			// save each value into an object
-  			// if it exists increment value but convert to valid integer b4 incrementing
-  			// Use unary plus operator to coerced properties  into a numeric value
-  			// else instatiante to 1
-    		results[value] =  results[value] ? ((+results[value] || 0) + 1) : 1;
- 		});
+	  			/*
+	  			 *  Save each value into the  result object
+	  			 *  if current element exists in the object
+	  			 *  Convert to valid integer before incrementing
+	  			 *  The Unary Plus operator is used to coerced object into a valid number
+	  			 *
+	  			 *  Instantiate to 1 if current element is not in the result object
+	  			 */
+	    		results[value] =  results[value] ? (( +results[value] || 0 ) + 1) : 1;
+	 		});
 
   		return results;
 	}
